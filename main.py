@@ -65,13 +65,17 @@ def run(name, pswd, search_term):
       exit()
       
    print "There are no tweets recently tweeted, so tweet the oldest tweet."
-   result = results[0]
-   rt = "RT @" + result['from_user']  + " " + result['text']
-   rt_len = len(rt)
-   print "Re-tweet: "+rt.encode('utf8')
-   print "Re-tweet Result: " + str(gae_twitter.update(rt.encode('utf8')))
-   exit()
-   
+   for i,result in enumerate(results):  
+      rt = "RT @" + result['from_user']  + " " + result['text']  
+      rt_len = len(rt)  
+      if result['from_user'] != bot_username and rt_len < max_len:  
+         """                                                                     
+         Retweet and exit                                                        
+         """  
+         print "Re-tweet: "+rt.encode('utf8')  
+         print "Re-tweet Result: " + str(gae_twitter.update(rt.encode('utf8')))  
+         exit()
+
 # overriding API __init__
 twitter.Api.__init__ = twitter_api_init_gae
 
