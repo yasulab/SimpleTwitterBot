@@ -1,0 +1,5 @@
+cron:
+- description: update_random
+  url: /cron/update
+  schedule: every 60 minutes
+  timezone: Asia/Tokyo
