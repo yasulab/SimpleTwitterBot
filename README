@@ -1,0 +1,15 @@
+This bot runs in the following ways.
+
+1. Search tweets using 'search_term' in Twitter.
+
+2. Re-tweet the tweets.
+
+In example, 'search_term' is 'Cafe Miyama',
+and you can see what it behaves by checking following account.
+
+http://twitter.com/cafemiyamabot
+
+Enjoy developing your own twitter bot!
+
+Yohei Yasukawa
+yasu1000@gmail.com
