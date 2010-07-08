@@ -68,7 +68,7 @@ def run(name, pswd, search_term):
    for i,result in enumerate(results):  
       rt = "RT @" + result['from_user']  + " " + result['text']  
       rt_len = len(rt)  
-      if result['from_user'] != bot_username and rt_len < MAX_LEN:  
+      if result['from_user'] != bot_username and rt_len < max_len:  
          """                                                                     
          Retweet and exit                                                        
          """  
@@ -81,7 +81,7 @@ twitter.Api.__init__ = twitter_api_init_gae
 
 # User Setting and Run Twitter Bot
 bot_username = 'CafeMiyamaBot'
-bot_password = '???'
+bot_password = 'linuxv6'
 br = "<br>"
 MAX_LEN = 140
 search_term = u'Cafe Miyama'
