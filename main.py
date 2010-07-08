@@ -84,5 +84,5 @@ bot_username = 'CafeMiyamaBot'
 bot_password = '???'
 br = "<br>"
 MAX_LEN = 140
-search_term = u'Cafe Miyama'
+search_term = u'"Cafe Miyama" OR カフェミヤマ'
 run(bot_username, bot_password, search_term)
