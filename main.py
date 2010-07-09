@@ -27,7 +27,10 @@ def run(name, pswd, search_term):
    gae_twitter = AppEngineTwitter(name, pswd)
    results = gae_twitter.search(search_term.encode('utf8'), {'rpp': 20})
    api = twitter.Api(username=bot_username, password=bot_password)
-
+   escape_user_list = []
+   escape_user_list.append(name)
+   escape_user_list.append("milkcocoa")
+   
    # Get most corrently tweeted tweet
    status = api.GetUserTimeline()
    
@@ -49,15 +52,34 @@ def run(name, pswd, search_term):
    for i,result in enumerate(results):
       rt = "RT @" + result['from_user']  + " " + result['text']
       rt_len = len(rt)
-      if flag_enable and result['from_user'] != bot_username and rt_len<MAX_LEN:
+      if debug_flag:
+         print "[Debug] rt["+str(i)+"]: " + rt.encode('utf8') 
+      
+      if flag_enable:
+         print "I am going to tweet the tweet above."
+         if rt_len > MAX_LEN:
+            print "But, this tweet length is longer that 140 characters, so skipped it."
+            continue
+         if result['from_user'] in escape_user_list:
+            print "But, this tweet above is tweeted by Escape User, so skipped it."
+            continue
+         if result['text'].startswith('@'):
+            print "But, this tweet above starts with '@', so skipped it."
+            continue
          """
          Retweet and exit
          """
-         print "Re-tweet: "+rt.encode('utf8')
-         print "Re-tweet Result: " + str(gae_twitter.update(rt.encode('utf8')))
+         if debug_flag:
+            print "Next Tweet: "+rt.encode('utf8')
+         else:
+            print "I have re-tweeted: "+rt.encode('utf8')
+            print "Result of my re-tweeting: " + str(gae_twitter.update(rt.encode('utf8')))
          exit()
                
       if recent_tweet == rt:
+         if debug_flag:
+            print "My Most Recent Tweet: " + recent_tweet.encode('utf8')
+            print "-----------------------------------------------------"
          flag_enable = 1
 
    if flag_enable:
@@ -67,19 +89,37 @@ def run(name, pswd, search_term):
    print "There are no tweets recently tweeted, so tweet the oldest tweet."
    for i,result in enumerate(results):  
       rt = "RT @" + result['from_user']  + " " + result['text']  
-      rt_len = len(rt)  
-      if result['from_user'] != bot_username and rt_len < MAX_LEN:  
+      rt_len = len(rt)
+      if debug_flag:
+         print "[Debug] rt["+str(i)+"]: " + rt.encode('utf8') 
+
+      if flag_enable:
+         print "I am going to tweet the tweet above."
+         if rt_len > MAX_LEN:
+            print "But, this tweet length is longer that 140 characters, so skipped it."
+            continue
+         if result['from_user'] in escape_user_list:
+            print "But, this tweet above is tweeted by Escape User, so skipped it."
+            continue
+         if result['text'].startswith('@'):
+            print "But, this tweet above starts with '@', so skipped it."
+            continue
          """                                                                     
          Retweet and exit                                                        
-         """  
-         print "Re-tweet: "+rt.encode('utf8')  
-         print "Re-tweet Result: " + str(gae_twitter.update(rt.encode('utf8')))  
+         """
+         if debug_flag:
+            print "Next Tweet: "+rt.encode('utf8')
+         else:
+            print "I have tweeted: "+rt.encode('utf8')
+            print "Result of my re-tweeting: " + str(gae_twitter.update(rt.encode('utf8')))
          exit()
 
 # overriding API __init__
 twitter.Api.__init__ = twitter_api_init_gae
 
 # User Setting and Run Twitter Bot
+debug_flag = True
+#debug_flag = False
 bot_username = 'CafeMiyamaBot'
 bot_password = '???'
 br = "<br>"
