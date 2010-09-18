@@ -10,7 +10,7 @@ and you can see how it behaves by checking the following account.
 http://twitter.com/cafemiyamabot
 
 
-HOW TO SETUP:
+HOW TO SETUP (work in progress):
 1. Register your OAuth client on Twitter
 URL: http://twitter.com/oauth_clients
 * you MUST choose 'client' for Simple Twitter Bot.
