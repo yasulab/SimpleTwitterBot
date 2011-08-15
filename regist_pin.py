@@ -4,7 +4,7 @@
 import sys, os, pickle
 from oauthtwitter import *
 
-KEY_FILE_API    = "Api_key.dat"
+KEY_FILE_API    = "api_key.dat"
 
 def twitter():
     if os.path.isfile(KEY_FILE_API):

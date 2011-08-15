@@ -11,13 +11,13 @@ from oauthtwitter import *
 #debug_flag = True
 debug_flag = False
 MAX_LEN = 140
-SEARCH_TERM = u'"Cafe Miyama" OR カフェミヤマ'
+SEARCH_TERM = u'Cafe Miyama'
 CONSUMER_KEY    = "???"
 CONSUMER_SECRET = "???"
 KEY_FILE_API    = "api_key.dat"
-KEY_FILE_TWITTER = "twitter_key.dat"
+
 BOT_USERNAME = "CafeMiyamaBot"
-BOT_PASSWORD = "???"
+
 
 def oauth_twitter():
    access_token = pickle.load(file(KEY_FILE_API))
@@ -41,7 +41,7 @@ def twitter_api_init_gae(self,
    self._input_encoding = input_encoding
    self.SetCredentials(username, password)
 
-def run(name, pswd, search_term):
+def run(search_term):
    acc_token = pickle.load(file(KEY_FILE_API))
    gae_twitter = AppEngineTwitter()   
    gae_twitter.set_oauth(CONSUMER_KEY,
@@ -52,7 +52,7 @@ def run(name, pswd, search_term):
    results = gae_twitter.search(search_term.encode('utf8'), {'rpp': 20})
    api = oauth_twitter() #twitter.Api(username=bot_username, password=bot_password)
    escape_user_list = []
-   escape_user_list.append(name)
+   escape_user_list.append(BOT_USERNAME)
    
    # Get most corrently tweeted tweet
    status = api.GetUserTimeline()
@@ -149,4 +149,4 @@ def run(name, pswd, search_term):
 twitter.Api.__init__ = twitter_api_init_gae
 
 # Start to run
-run(BOT_USERNAME, BOT_PASSWORD, SEARCH_TERM)
+run(SEARCH_TERM)
