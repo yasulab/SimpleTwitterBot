@@ -40,7 +40,7 @@
   Bug fix for non-tty devices.
 
 2007-09-13
- 
+
   Unset the executable bit on README.
 
 2007-09-13
@@ -49,7 +49,7 @@
   Added back support for setuptools (conditionally)
   Added support for X-Twitter-* HTTP headers
   Fixed the tests to work across all timezones
-  Removed the 140 character limit from PostUpdate  
+  Removed the 140 character limit from PostUpdate
   Added support for per-user tmp cache directories
 
 2007-06-13
@@ -72,17 +72,17 @@
   Added GetStatus ("statuses/show" in the twitter web api)
   Added GetReplies
   Added optional since_id parameter on GetPublicTimeline
-  Added optional since parameter on GetUserTimeline 
+  Added optional since parameter on GetUserTimeline
   Added optional since and user parameters on GetFriendsTimeline
-  Added optional user parameter on GetFriends 
-  
+  Added optional user parameter on GetFriends
+
 2007-04-27
-  
+
   Modified examples/twitter-to-xhtml.py to handle unicode
   Dropped dependency on setuptools (too complicated/buggy)
   Added unicode test cases
   Fixed issue 2 "Rename needs an unlink in front"
-  
+
 2007-04-02
 
   Released 0.3.
